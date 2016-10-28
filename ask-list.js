@@ -1,4 +1,5 @@
 const askEl = document.getElementById('ask')
+const askeeEl = document.getElementById('askee')
 const acceptedButton = document.getElementById('accepted')
 const rejectedButton = document.getElementById('rejected')
 let askListEl = document.querySelector('.ask-list')
@@ -40,7 +41,7 @@ let askList = (() => {
     const ask = {
       timestamp: Date.now(),
       ask: askEl.value,
-      askee: askEl.value,
+      askee: askeeEl.value,
       status
     }
 
