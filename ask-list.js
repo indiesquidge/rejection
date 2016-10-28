@@ -5,7 +5,15 @@ let askListEl = document.querySelector('.ask-list')
 let scoreEl = document.querySelector('.current-score')
 
 let askList = (() => {
-  let list = []
+  let list = JSON.parse(localStorage.getItem('askList')) || []
+
+  const saveList = () => {
+    localStorage.setItem('askList', JSON.stringify(list))
+  }
+
+  const getList = () => {
+    list.forEach(ask => appendNewAskToDOM(ask))
+  }
 
   const appendNewAskToDOM = (ask) => {
     let newListEl = document.createElement('li')
@@ -39,16 +47,19 @@ let askList = (() => {
     list.push(ask)
     appendNewAskToDOM(ask)
     setScore()
+    saveList()
 
     return ask
   }
 
   return {
     newAsk,
-    setScore
+    setScore,
+    getList
   }
 })()
 
+askList.getList()
 askList.setScore()
 
 acceptedButton.addEventListener('click', (e) => {
