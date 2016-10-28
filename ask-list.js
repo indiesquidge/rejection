@@ -1,3 +1,4 @@
+const newAskForm = document.querySelector('.ask-form')
 const askEl = document.getElementById('ask')
 const askeeEl = document.getElementById('askee')
 const acceptedButton = document.getElementById('accepted')
@@ -19,6 +20,7 @@ let askList = (() => {
   const appendNewAskToDOM = (ask) => {
     let newListEl = document.createElement('li')
     newListEl.innerHTML = JSON.stringify(ask, null, 2)
+    newAskForm.reset()
     askListEl.appendChild(newListEl)
   }
 
