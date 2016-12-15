@@ -1,0 +1,143 @@
+html {
+  box-sixing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #F2F2F2;
+  font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+  color: #525252;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.flex-grid {
+  margin: 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.app-title {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.col {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.col.new-ask {
+  background-color: white;
+  box-shadow: 0px 3px 8px -4px rgba(0, 0, 0, 0.15);
+  width: 50%;
+}
+
+.col.asks {
+  width: 100%;
+  margin: 2rem;
+}
+
+.col .header {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.3rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.ask-form {
+  width: 75%;
+}
+
+.ask-form > .ask-group,
+.ask-form > .askee-group {
+  border: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.ask-form fieldset > label,
+.ask-form fieldset > input {
+  width: 100%;
+}
+
+.ask-form fieldset > input {
+  background-color: #ebebeb;
+  border: none;
+  border-radius: 3px;
+  height: 2rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.button-wrapper {
+  text-align: center;
+}
+
+#accepted,
+#rejected {
+  cursor: pointer;
+  color: white;
+  border: none;
+  background-color: #2fdab8;
+  border: 1px solid;
+  font-size: 1.5rem;
+  height: 3rem;
+  margin: 1rem 0.5rem;
+  padding: 2px 1rem;
+  width: 40%;
+}
+
+#accepted:disabled,
+#rejected:disabled {
+  background-color: red;
+}
+
+.score-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.score-wrapper > .score-title {
+  display: inline-block;
+}
+
+.score-wrapper > .current-score {
+  margin: 0 1rem;
+}
+
+.ask-list {
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.ask-list .ask {
+  width: 300px;
+  margin: 1rem 0.25rem;
+  list-style-type: none;
+  background-color: white;
+  padding: 1rem;
+}
+
+@media (max-width: 667px) {
+  .flex-grid {
+    display: block;
+  }
+
+  .col {
+    width: 100% !important;
+  }
+}

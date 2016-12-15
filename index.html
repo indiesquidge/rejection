@@ -2,26 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ask List</title>
   </head>
+  <link rel="stylesheet" href="./main.css">
   <body>
-    <section class="new-ask">
-      <form action="" class="ask-form">
-        <label for="ask">What did you ask?</label>
-        <input type="text" id="ask" />
-        <label for="ask">Who did you ask?</label>
-        <input type="text" id="askee" />
-        <button id="accepted">Accepted</button>
-        <button id="rejected">Rejected</button>
-      </form>
-    </section>
-    <section class="asks-score">
-      <h3 class="score-header">Current Score:</h3>
-      <span class="current-score"></span>
-      <h3 class="asks-header">Asks:</h3>
-      <ul class="ask-list">
-      </ul>
-    </section>
+    <div class="flex-grid">
+      <h1 class="app-title">Rejection</h1>
+
+      <section class="col new-ask">
+        <form action="" class="ask-form">
+          <fieldset class="ask-group">
+            <label for="ask">What did you ask?</label>
+            <input type="text" id="ask" autocomplete="off" required />
+          </fieldset>
+          <fieldset class="askee-group">
+            <label for="askee">Who did you ask?</label>
+            <input type="text" id="askee" autocomplete="off" required />
+          </fieldset>
+          <div class="button-wrapper">
+            <button id="accepted">Accepted</button>
+            <button id="rejected">Rejected</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="col asks">
+        <h3 class="header">Asks</h3>
+        <section class="score-wrapper">
+          <p class="score-title">Current Score:</p>
+          <span class="current-score">0</span>
+        </section>
+        <ul class="ask-list">
+        </ul>
+      </section>
+
+    </div>
   </body>
   <script src="./ask-list.js"></script>
 </html>
