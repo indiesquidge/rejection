@@ -2,6 +2,10 @@ html {
   box-sixing: border-box;
 }
 
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   background-color: #F2F2F2;
@@ -11,14 +15,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+input, textarea, select {
+  -webkit-appearance: none;
+  -webkit-border-radius:0;
 }
 
 .flex-grid {
   margin: 20px;
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -43,7 +48,7 @@ body {
 
 .col.asks {
   width: 100%;
-  margin: 2rem;
+  margin-top: 2rem;
 }
 
 .col .header {
@@ -101,7 +106,11 @@ body {
 
 #accepted:disabled,
 #rejected:disabled {
-  background-color: red;
+  cursor: default;
+  color: grey;
+  border-color: grey;
+  box-shadow: none;
+  background: lightgrey;
 }
 
 .score-wrapper {

@@ -8,13 +8,18 @@
   const scoreEl = document.querySelector('.current-score')
 
   const myAskList = askList()
-  myAskList.renderListAndScore()
+  myAskList.render()
 
   acceptedButton.addEventListener('click', (e) => {
     if (askInput.validity.valid && askeeInput.validity.valid) {
       e.preventDefault()
       myAskList.newAsk('accepted')
     }
+  })
+
+  askInput.addEventListener('keyup', (e) => {
+    acceptedButton.disabled = !askInput.validity.valid
+    rejectedButton.disabled = !askInput.validity.valid
   })
 
   rejectedButton.addEventListener('click', (e) => {
@@ -24,30 +29,28 @@
     }
   })
 
-  function askList() {
-    let list = JSON.parse(localStorage.getItem('askList')) || []
+  function askList () {
+    let list = getList() || []
 
-    const saveList = () => {
-      localStorage.setItem('askList', JSON.stringify(list))
-    }
-
-    const renderListAndScore = () => {
+    function render () {
       const listElements = list.map(convertToElement).join('')
       askListEl.innerHTML = listElements
       renderScore()
       newAskForm.reset()
     }
 
-    const convertToElement = ask => {
+    function convertToElement (ask) {
+      const { status, description, askee, timestamp } = ask
+
       return `<li class="ask">
-                <h4>${ask.status}</h4>
-                <p>${ask.ask}</p>
-                <p>${ask.askee}</p>
-                <p>${ask.timestamp}</p>
+                <h4>${status}</h4>
+                <p>${description}</p>
+                <p>${askee}</p>
+                <p>${timestamp}</p>
               </li>`
     }
 
-    const renderScore = () => {
+    function renderScore () {
       const scoreTotal = list.reduce((total, ask) => {
         if (ask.status === 'accepted') return total + 1
         if (ask.status === 'rejected') return total + 10
@@ -56,19 +59,39 @@
       scoreEl.innerHTML = scoreTotal
     }
 
-    const newAsk = status => {
+    function newAsk (status) {
       const ask = {
         timestamp: currentDateAndTime(),
-        ask: askInput.value,
+        description: askInput.value,
         askee: askeeInput.value,
         status
       }
 
       list.push(ask)
       saveList()
-      renderListAndScore()
+      render()
 
       return ask
+    }
+
+    function getList () {
+      try {
+        const serializedList = window.localStorage.getItem('askList')
+        if (serializedList === null) return undefined
+
+        return JSON.parse(serializedList)
+      } catch (err) {
+        return undefined
+      }
+    }
+
+    function saveList () {
+      try {
+        const serializedList = JSON.stringify(list)
+        window.localStorage.setItem('askList', serializedList)
+      } catch (err) {
+        // Ignore write errors if localStorage does not exist
+      }
     }
 
     // create timestamp
@@ -93,7 +116,7 @@
     // public methods
     return {
       newAsk,
-      renderListAndScore
+      render
     }
   }
 })()
